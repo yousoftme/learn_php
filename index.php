@@ -29,6 +29,9 @@ abstract class Language {
     public function intro () {
         echo "This is " . $this->name . " language.<br/>";
     }
+    public static function showVersion ($version) {
+        echo "Version => ". $version ."<br />";
+    }
 
     public function __call($name, $arguments)
     {
@@ -121,7 +124,7 @@ abstract class Language {
     }
 }
 
-class python extends Language implements Variable {
+class Python extends Language implements Variable {
     use Comment;
     public function howToPrint()
     {
@@ -144,7 +147,7 @@ class python extends Language implements Variable {
     }
 }
 
-class javascript extends Language implements Variable  {
+class Javascript extends Language implements Variable  {
     use Comment;
     public function howToPrint()
     {
@@ -165,7 +168,7 @@ class javascript extends Language implements Variable  {
     }
 }
 
-class php extends Language implements Variable  {
+class Php extends Language implements Variable  {
     use Comment;
     public function howToPrint()
     {
@@ -176,11 +179,12 @@ class php extends Language implements Variable  {
     }
 }
 
-$python_obj = new python('python');
-$javascript_obj = new javascript('javascript');
-$php_obj = new php('php');
+$python_obj = new Python('python');
+$javascript_obj = new Javascript('javascript');
+$php_obj = new Php('php');
 
 $python_obj->intro();
+Python::showVersion('3.10');
 $python_obj->howToPrint();
 $python_obj->howToComment();
 $python_obj->checkType();
@@ -188,12 +192,14 @@ $python_obj->howToUseConditions('python', 'ifelseif');
 echo '<br />';
 
 $javascript_obj->intro();
+Javascript::showVersion('ES2015');
 $javascript_obj->howToPrint();
 $javascript_obj->howToComment();
 $javascript_obj->checkType();
 echo '<br />';
 
 $php_obj->intro();
+Php::showVersion('8.1');
 $php_obj->howToPrint();
 $php_obj->howToComment();
 $php_obj->checkType();
